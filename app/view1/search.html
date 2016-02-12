@@ -1,5 +1,7 @@
 <div class="container" ng-controller="searchController">
     <div class="row">
+        <h1>Welcome to Awesome Enterprises. Please enter a search term!</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, commodi consequatur dignissimos dolor dolorum earum, et harum incidunt iure maiores mollitia, natus nemo nisi placeat recusandae sapiente veniam voluptate voluptatibus?</p>
         <div class="col-lg-3">
             <div class="input-group custom-search-form">
                 <input type="text" class="form-control" placeholder="Enter a item to search for" ng-model="searchTerm">
@@ -14,8 +16,8 @@
 </div>
 
 <div class="container search-results" ng-controller="searchController">
-    <div class="well well-sm">
-        <strong>Search Results for:  </strong>
+    <div class="well well-sm" ng-if="showResults()">
+        <strong>Search Results for: {{title}} </strong>
 
         <select name="state" class="ddList" ng-model="selectResult">
             <option value="">(Results to show)</option>

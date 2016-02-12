@@ -3,37 +3,40 @@
     "use strict";
 
 
-    var searchController = function ($scope, dataService) {
+    var searchController = function ($scope, $rootScope, dataService) {
 
-        $scope.items = [];
+        $rootScope.items = [];
         $scope.showResults = function () {
 
 
-            if($scope.items.length > 1) return true;
+            if($rootScope.items.length > 1) return true;
 
             return false;
 
         };
         var resultResponse = function (response) {
 
-            $scope.items = response.items;
+            $rootScope.items = response.items;
+            $rootScope.title  = response.title;
         }
 
 
         $scope.getSearchTerm = function (searchTerm) {
 
-            if(typeof searchTerm === "undefined") return;
+            var isNumber = /^\d+$/;
+
+            if(typeof searchTerm === "undefined" || searchTerm.length === 0 || isNumber.test(searchTerm)) return;
 
             dataService.get(searchTerm).success(resultResponse);
         };
 
 
-        $scope.results = [10, 20, 30, 40];
+        $scope.results = [5, 10, 15, 20];
 
 
     }
 
-    searchController['$inject'] = [ '$scope', 'dataService'];
+    searchController['$inject'] = [ '$scope', '$rootScope', 'dataService'];
 
     angular.module('myApp')
         .controller('searchController', searchController);
