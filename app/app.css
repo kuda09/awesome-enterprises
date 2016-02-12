@@ -1,0 +1,32 @@
+/* app css stylesheet */
+
+.navbar-brand-centered {
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 230px;
+    text-align: center;
+    background-color: transparent;
+}
+.navbar>.container .navbar-brand-centered,
+.navbar>.container-fluid .navbar-brand-centered {
+    margin-left: -139px;
+}
+
+.custom-search-form{
+    margin-top:5px;
+}
+
+.search-results {
+
+    margin-top: 50px;
+}
+
+.tags {
+
+    word-break: break-all;
+}
+
+.ddList {
+    float:right;
+}

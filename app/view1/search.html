@@ -1,0 +1,48 @@
+<div class="container" ng-controller="searchController">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="input-group custom-search-form">
+                <input type="text" class="form-control" placeholder="Enter a item to search for" ng-model="searchTerm">
+              <span class="input-group-btn">
+              <button class="btn btn-primary" type="button" ng-click="getSearchTerm(searchTerm)">
+                  <span class="glyphicon glyphicon-search"></span>
+              </button>
+             </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+</div>
+
+<div class="container search-results" ng-controller="searchController">
+    <div class="well well-sm">
+        <strong>Search Results for:  </strong>
+
+        <select name="state" class="ddList" ng-model="selectResult">
+            <option value="">(Results to show)</option>
+            <option class="lt" value="{{result}}" ng-repeat="result in results" ng-change="getLimit()" ng-model="result">{{result}}</option>
+        </select>
+
+    </div>
+    <div id="products" class="row list-group" ng-if="showResults()">
+
+
+        <div class="item  col-xs-4 col-lg-4" ng-repeat="item in items | limitTo: selectResult">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="{{item.media.m}}" alt="{{item.title}}" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{item.title}}</h4>
+                    <p class="group inner list-group-item-text" ng-bind-html="item.tags | myLineBreakFilter | sanitize">
+                        </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                {{item.author}}
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
